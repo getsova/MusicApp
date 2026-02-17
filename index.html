@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Iva Music</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <label>Добави песен в списъка</label>
+        <input type="text" id="input-el" placeholder="https://youtube.com/...">
+        <label>Име на песента:</label>
+        <input type="text" id="name-el" placeholder="My Song">
+        <button id="input-btn">ЗАПИШИ</button>
+        <ul id="ul-el">
+        </ul>
+        <div id="yt-player" class="yt-player" aria-hidden="true">
+        </div>
+        <script type="module" src="index.js"></script>
+    </body>
+</html>
