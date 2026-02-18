@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Iva Music — Акаунт</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <div class="topbar">
+            <a class="auth-link" href="/">← Назад</a>
+            <div class="user">
+                <span class="user-label">Акаунт</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="tabs">
+                <button id="tab-signup" type="button" class="tab active">Създай акаунт</button>
+                <button id="tab-login" type="button" class="tab">Вход</button>
+            </div>
+
+            <form id="auth-form">
+                <label for="email-el">Имейл</label>
+                <input id="email-el" type="email" autocomplete="email" placeholder="name@example.com" required>
+
+                <label for="password-el">Парола</label>
+                <input id="password-el" type="password" autocomplete="new-password" placeholder="••••••••" required>
+
+                <label id="confirm-label" for="confirm-el">Повтори парола</label>
+                <input id="confirm-el" type="password" autocomplete="new-password" placeholder="••••••••" required>
+
+                <button id="submit-btn" type="submit">Създай акаунт</button>
+            </form>
+
+            <div id="auth-msg" class="msg" role="status" aria-live="polite"></div>
+        </div>
+
+        <script type="module" src="auth.js"></script>
+    </body>
+</html>
+

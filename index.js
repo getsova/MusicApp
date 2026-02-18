@@ -1,22 +1,27 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js"
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js"
 import { getDatabase,
          ref,
          push,
          onValue,
          remove } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js"
 
-const firebaseConfig = {
-    databaseURL: "https://leads-tracker-app-487d3-default-rtdb.europe-west1.firebasedatabase.app/"
-}
+import { firebaseConfig } from "./firebaseConfig.js"
 
 const app = initializeApp(firebaseConfig)
+const auth = getAuth(app)
 const database = getDatabase(app)
-const referenceInDB = ref(database, "songs")
 
 const inputEl = document.getElementById("input-el")
 const nameEl = document.getElementById("name-el")
 const inputBtn = document.getElementById("input-btn")
 const ulEl = document.getElementById("ul-el")
+const userEl = document.getElementById("user-el")
+const logoutBtn = document.getElementById("logout-btn")
+const authLink = document.getElementById("auth-link")
+
+let songsRef = null
+let stopSongsListener = null
 
 function getDisplayName(url, customName) {
     if (customName && customName.trim()) return customName.trim()
@@ -98,8 +103,10 @@ ulEl.addEventListener("click", function(e) {
         e.stopPropagation()
         const songItem = deleteBtn.closest(".song-item")
         const key = songItem?.dataset.key
-        if (key) {
-            remove(ref(database, "songs/" + key))
+        if (key && songsRef) {
+            const uid = auth.currentUser?.uid
+            if (!uid) return
+            remove(ref(database, `users/${uid}/songs/${key}`))
         }
         return
     }
@@ -111,22 +118,51 @@ ulEl.addEventListener("click", function(e) {
     }
 })
 
-onValue(referenceInDB, function(snapshot) {
-    const snapshotDoesExist = snapshot.exists()
-    if (snapshotDoesExist) {
-        const snapshotValues = snapshot.val()
-        const entries = Object.entries(snapshotValues)
-        render(entries)
-    } else {
-        render([])
+function setSignedOutUi() {
+    userEl.textContent = "Не сте влезли"
+    logoutBtn.hidden = true
+    authLink.hidden = false
+    inputBtn.disabled = true
+    songsRef = null
+    if (stopSongsListener) {
+        stopSongsListener()
+        stopSongsListener = null
     }
+    render([])
+}
+
+function setSignedInUi(user) {
+    userEl.textContent = user.email || "Влезли сте"
+    logoutBtn.hidden = false
+    authLink.hidden = true
+    inputBtn.disabled = false
+
+    songsRef = ref(database, `users/${user.uid}/songs`)
+    if (stopSongsListener) stopSongsListener()
+    stopSongsListener = onValue(songsRef, function(snapshot) {
+        if (snapshot.exists()) {
+            render(Object.entries(snapshot.val()))
+        } else {
+            render([])
+        }
+    })
+}
+
+onAuthStateChanged(auth, function(user) {
+    if (user) setSignedInUi(user)
+    else setSignedOutUi()
+})
+
+logoutBtn.addEventListener("click", function() {
+    signOut(auth)
 })
 
 inputBtn.addEventListener("click", function() {
     const url = inputEl.value.trim()
     const name = nameEl.value.trim()
     if (!url) return
-    push(referenceInDB, { url, name })
+    if (!songsRef) return
+    push(songsRef, { url, name })
     inputEl.value = ""
     nameEl.value = ""
 })
