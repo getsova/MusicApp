@@ -3,6 +3,8 @@ body {
     padding: 10px;
     font-family: "Inter", "Segoe UI", "Roboto", sans-serif;
     max-width: 302px;
+    background-image: url(flowers.jpg);
+    background-size: cover;
 }
 
 .topbar {
