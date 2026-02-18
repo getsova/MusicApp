@@ -18,11 +18,14 @@ body {
     display: flex;
     flex-direction: column;
     gap: 2px;
+    color: #b52b85;
+    font-weight: 700;
+    font-size: 12px;
 }
 
 .user-label {
     font-size: 11px;
-    color: #666;
+    color: #b52b85;
 }
 
 .auth-link {
@@ -92,7 +95,7 @@ button {
     margin-top: 10px;
     min-height: 20px;
     font-size: 13px;
-    color: #333;
+    color: #b52b85;
     word-break: break-word;
 }
 
@@ -149,6 +152,61 @@ li.song-item:hover {
     display: block;
 }
 
+.settings-container {
+    position: relative;
+    margin-left: auto;
+}
+
+.settings-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 4px;
+    color: #b52b85;
+}
+
+.settings-btn:hover {
+    transform: scale(1.1);
+}
+
+.settings-menu {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: white;
+    border: 1px solid #b52b85;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    min-width: 120px;
+    display: flex;
+    flex-direction: column;
+}
+
+.settings-menu[hidden] {
+    display: none;
+}
+
+.menu-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #b52b85;
+    background: none;
+    border: none;
+    text-align: left;
+    width: 100%;
+}
+
+.menu-item:hover {
+    background: #fdf2f8;
+}
+
+.menu-item:not(:last-child) {
+    border-bottom: 1px solid #eee;
+}
+
 .song-name {
     flex: 1;
     font-size: 14px;
@@ -164,7 +222,7 @@ li.song-item:hover {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(88, 6, 82, 0.904);
     z-index: 1000;
     align-items: center;
     justify-content: center;
@@ -195,5 +253,3 @@ li.song-item:hover {
     max-width: 640px;
     aspect-ratio: 16/9;
 }
-
-
