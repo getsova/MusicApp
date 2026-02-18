@@ -1,9 +1,19 @@
-# Getting Started
-Install the dependencies and run the project
+# Iva Music
+
+## Getting Started
+
 ```
 npm install
 npm start
 ```
+
+Then open http://localhost:5173
+
+## Firebase Authentication Setup
+
+1. Go to [Firebase Console](https://console.firebase.google.com) → your project
+2. **Authentication** → **Sign-in method** → enable **Email/Password**
+3. Ensure `firebaseConfig.js` has your `apiKey`, `authDomain`, `projectId` from Project settings
 
 Head over to https://vitejs.dev/ to learn more about configuring vite
 ## About Scrimba

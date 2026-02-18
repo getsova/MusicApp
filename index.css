@@ -88,9 +88,15 @@ button {
 
 .msg {
     margin-top: 10px;
-    font-size: 12px;
+    min-height: 20px;
+    font-size: 13px;
     color: #333;
     word-break: break-word;
+}
+
+.msg-error {
+    color: #c0392b;
+    font-weight: 700;
 }
 
 
