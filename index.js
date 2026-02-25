@@ -16,7 +16,6 @@ const auth = getAuth(app)
 const database = getDatabase(app)
 
 const inputEl = document.getElementById("input-el")
-const nameEl = document.getElementById("name-el")
 const inputBtn = document.getElementById("input-btn")
 const ulEl = document.getElementById("ul-el")
 const userEl = document.getElementById("user-el")
@@ -40,8 +39,17 @@ function getDisplayName(url, customName) {
 }
 
 function normalizeSong(item) {
-    if (typeof item === "string") return { url: item, name: getDisplayName(item) }
-    return { url: item.url, name: getDisplayName(item.url, item.name) }
+    let song = typeof item === "string"
+        ? { url: item, name: getDisplayName(item), thumbnailUrl: "" }
+        : { url: item.url, name: getDisplayName(item.url, item.name), thumbnailUrl: item.thumbnailUrl || "" }
+
+    if (!song.thumbnailUrl) {
+        const videoId = getYouTubeVideoId(song.url)
+        if (videoId) {
+            song.thumbnailUrl = `https://img.youtube.com/vi/${videoId}/default.jpg`
+        }
+    }
+    return song
 }
 
 function render(entries) {
@@ -51,9 +59,13 @@ function render(entries) {
         const song = normalizeSong(item)
         const safeUrl = song.url.replace(/&/g, "&amp;").replace(/"/g, "&quot;")
         const safeName = song.name.replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        const thumbnailHtml = song.thumbnailUrl
+            ? `<img src="${song.thumbnailUrl}" class="song-thumbnail" alt="">`
+            : `<div class="song-thumbnail song-thumbnail-placeholder">🎵</div>`
+
         listItems += `
             <li class="song-item" data-url="${safeUrl}" data-key="${key}">
-                <button type="button" class="play-btn">▶ Пусни</button>
+                ${thumbnailHtml}
                 <span class="song-name">${safeName}</span>
                 <div class="settings-container">
                     <button type="button" class="settings-btn" aria-label="Настройки">⚙️</button>
@@ -173,11 +185,14 @@ ulEl.addEventListener("click", function (e) {
         return
     }
 
-    const songItem = e.target.closest(".song-item")
-    if (songItem) {
+    const playTrigger = e.target.closest(".song-thumbnail") || e.target.closest(".song-name")
+    if (playTrigger) {
         e.preventDefault()
-        const url = songItem.dataset.url
-        playUrl(url)
+        const songItem = playTrigger.closest(".song-item")
+        if (songItem) {
+            const url = songItem.dataset.url
+            playUrl(url)
+        }
     }
 })
 
@@ -229,12 +244,27 @@ logoutBtn.addEventListener("click", function () {
     signOut(auth)
 })
 
-inputBtn.addEventListener("click", function () {
+inputBtn.addEventListener("click", async function () {
     const url = inputEl.value.trim()
-    const name = nameEl.value.trim()
     if (!url) return
     if (!songsRef) return
-    push(songsRef, { url, name })
+
+    let name = ""
+    let thumbnailUrl = ""
+    if (getYouTubeVideoId(url)) {
+        try {
+            const response = await fetch(`https://noembed.com/embed?url=${encodeURIComponent(url)}`)
+            if (response.ok) {
+                const data = await response.json()
+                name = data.title || ""
+                thumbnailUrl = data.thumbnail_url || ""
+                console.log("Fetched title:", name)
+            }
+        } catch (e) {
+            console.error("Error fetching YouTube title:", e)
+        }
+    }
+
+    push(songsRef, { url, name, thumbnailUrl })
     inputEl.value = ""
-    nameEl.value = ""
 })
