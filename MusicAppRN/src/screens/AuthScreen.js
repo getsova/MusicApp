@@ -51,6 +51,12 @@ export default function AuthScreen() {
 
     return (
         <View style={styles.container}>
+            {/* Computed background color based on primary and alpha */}
+            <View style={[StyleSheet.absoluteFill, {
+                backgroundColor: config.colors.primary,
+                opacity: config.images.backgroundAlpha || 0.2
+            }]} />
+
             <Text style={styles.title}>Iva Music</Text>
 
             <View style={styles.tabs}>

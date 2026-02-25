@@ -77,9 +77,11 @@ export default function HomeScreen() {
 
     return (
         <SafeAreaView style={styles.container}>
-            {/* Background Image mock - RN doesn't support local file URL same way easily without import, 
-                we'll just use a solid color or gradient for now to keep it simple, or require a local asset if available. 
-                For this port, clean UI is better than broken image. */}
+            {/* Computed background color based on primary and alpha */}
+            <View style={[StyleSheet.absoluteFill, {
+                backgroundColor: config.colors.primary,
+                opacity: config.images.backgroundAlpha || 0.2
+            }]} />
 
             <View style={styles.header}>
                 <View>
@@ -143,7 +145,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f8f9fa', // Light gray background instead of flowers.jpg
+        backgroundColor: '#fff',
         padding: 10,
     },
     header: {

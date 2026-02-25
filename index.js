@@ -16,7 +16,16 @@ const config = getBrandConfig()
 document.documentElement.style.setProperty('--primary', config.colors.primary)
 document.documentElement.style.setProperty('--primary-hover', config.colors.primaryHover)
 document.documentElement.style.setProperty('--bg-image', config.images.background)
+document.documentElement.style.setProperty('--bg-alpha', config.images.backgroundAlpha)
 document.title = config.name
+
+// Update favicon dynamically
+const iconUrl = config.images.icon;
+if (iconUrl) {
+    document.querySelector('link[rel="apple-touch-icon"]').href = iconUrl;
+    document.querySelector('link[sizes="32x32"]').href = iconUrl;
+    document.querySelector('link[sizes="16x16"]').href = iconUrl;
+}
 
 const app = initializeApp(firebaseConfig)
 const auth = getAuth(app)
