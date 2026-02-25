@@ -13,7 +13,21 @@ const config = getBrandConfig()
 document.documentElement.style.setProperty('--primary', config.colors.primary)
 document.documentElement.style.setProperty('--primary-hover', config.colors.primaryHover)
 document.documentElement.style.setProperty('--bg-image', config.images.background)
+document.documentElement.style.setProperty('--bg-alpha', config.images.backgroundAlpha)
 document.title = config.name
+
+// Update favicon dynamically
+const iconUrl = config.images.icon;
+if (iconUrl) {
+    // Auth page doesn't have the icon links in HTML right now, but they can be injected
+    let fav = document.querySelector('link[rel="icon"]');
+    if (!fav) {
+        fav = document.createElement('link');
+        fav.rel = 'icon';
+        document.head.appendChild(fav);
+    }
+    fav.href = iconUrl;
+}
 
 const app = initializeApp(firebaseConfig)
 const auth = getAuth(app)

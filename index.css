@@ -2,6 +2,7 @@
     --primary: #b52b85;
     --primary-hover: #fdf2f8;
     --bg-image: url('flowers.jpg');
+    --bg-alpha: 0.2;
 }
 
 body {
@@ -9,8 +10,23 @@ body {
     padding: 10px;
     font-family: "Inter", "Segoe UI", "Roboto", sans-serif;
     max-width: 302px;
+    position: relative;
+    min-height: 100vh;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-image: var(--bg-image);
     background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    opacity: var(--bg-alpha);
+    z-index: -1;
 }
 
 .topbar {

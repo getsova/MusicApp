@@ -1,24 +1,28 @@
-export const ACTIVE_BRAND = "IvaMusic"; // Change this to switch brands
+export const ACTIVE_BRAND = "Iva"; // Change this to switch brands
 
 export const BRANDS = {
-    IvaMusic: {
+    Iva: {
         name: "Iva Music",
         colors: {
             primary: "#b52b85",
             primaryHover: "#fdf2f8"
         },
         images: {
-            background: "url('flowers.jpg')"
+            background: "url('flowerss.jpg')",//"linear-gradient(135deg, var(--primary-hover), var(--primary-hover))",
+            icon: "dog.png",
+            backgroundAlpha: 0.2
         }
     },
-    BungySingers: {
+    Bungy: {
         name: "Bungy Singers",
         colors: {
-            primary: "#2b5ab5", // Blue for Bungy Singers
-            primaryHover: "#f2f5fd"
+            primary: "#b52b85",
+            primaryHover: "#fdf2f8"
         },
         images: {
-            background: "url('bungy.png')"
+            background: "url('bungy.png')",//"linear-gradient(135deg, var(--primary), var(--primary-hover))",
+            icon: "bungy.png",
+            backgroundAlpha: 0.2
         }
     }
 };
