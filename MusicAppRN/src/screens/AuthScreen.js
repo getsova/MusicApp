@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { getBrandConfig } from '../../brandConfig';
+
+const config = getBrandConfig();
 
 export default function AuthScreen() {
     const [isSignup, setIsSignup] = useState(true);
@@ -121,7 +124,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: '900',
-        color: '#b52b85',
+        color: config.colors.primary,
         marginBottom: 30,
     },
     tabs: {
@@ -138,34 +141,34 @@ const styles = StyleSheet.create({
         borderBottomColor: '#eee',
     },
     tabActive: {
-        borderBottomColor: '#b52b85',
+        borderBottomColor: config.colors.primary,
     },
     tabText: {
-        color: '#b52b85',
+        color: config.colors.primary,
         fontWeight: 'bold',
     },
     tabTextActive: {
-        color: '#b52b85',
+        color: config.colors.primary,
     },
     form: {
         width: '100%',
         maxWidth: 300,
     },
     label: {
-        color: '#b52b85',
+        color: config.colors.primary,
         fontWeight: 'bold',
         marginTop: 10,
         marginBottom: 5,
     },
     input: {
         borderWidth: 1,
-        borderColor: '#b52b85',
+        borderColor: config.colors.primary,
         padding: 10,
         borderRadius: 4,
         marginBottom: 5,
     },
     submitBtn: {
-        backgroundColor: '#b52b85',
+        backgroundColor: config.colors.primary,
         padding: 15,
         alignItems: 'center',
         borderRadius: 4,
@@ -176,7 +179,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     msg: {
-        color: '#b52b85',
+        color: config.colors.primary,
         marginTop: 10,
         textAlign: 'center',
     },

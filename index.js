@@ -10,6 +10,13 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js"
 
 import { firebaseConfig } from "./firebaseConfig.js"
+import { getBrandConfig } from "./MusicAppRN/brandConfig.js"
+
+const config = getBrandConfig()
+document.documentElement.style.setProperty('--primary', config.colors.primary)
+document.documentElement.style.setProperty('--primary-hover', config.colors.primaryHover)
+document.documentElement.style.setProperty('--bg-image', config.images.background)
+document.title = config.name
 
 const app = initializeApp(firebaseConfig)
 const auth = getAuth(app)
