@@ -96,7 +96,7 @@ function playUrl(url) {
         playerEl.innerHTML = `
             <button type="button" class="close-player" aria-label="Close">×</button>
             <iframe
-                src="https://www.youtube.com/embed/${videoId}?autoplay=1"
+                src="https://www.youtube.com/embed/${videoId}?autoplay=1&playsinline=1"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen
             ></iframe>
