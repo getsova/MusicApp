@@ -3,6 +3,9 @@ import { View, Text, TouchableOpacity, StyleSheet, Alert, Modal, TextInput } fro
 import { getDatabase, ref, remove, update } from 'firebase/database';
 import { getAuth } from 'firebase/auth';
 import { Ionicons } from '@expo/vector-icons';
+import { getBrandConfig } from '../../brandConfig';
+
+const config = getBrandConfig();
 
 export default function SongItem({ song, onPlay }) {
     const [showMenu, setShowMenu] = useState(false);
@@ -66,11 +69,11 @@ export default function SongItem({ song, onPlay }) {
 
             <View style={styles.actions}>
                 <TouchableOpacity style={styles.iconBtn} onPress={() => setShowMenu(!showMenu)}>
-                    <Ionicons name="settings-sharp" size={24} color="#b52b85" />
+                    <Ionicons name="settings-sharp" size={24} color={config.colors.primary} />
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.iconBtn} onPress={handleDelete}>
-                    <Ionicons name="trash-outline" size={24} color="#b52b85" />
+                    <Ionicons name="trash-outline" size={24} color={config.colors.primary} />
                 </TouchableOpacity>
             </View>
 
@@ -122,14 +125,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 10,
         borderWidth: 1,
-        borderColor: '#b52b85',
+        borderColor: config.colors.primary,
         borderRadius: 4,
         marginBottom: 10,
         backgroundColor: '#fff',
         zIndex: 1,
     },
     playBtn: {
-        backgroundColor: '#b52b85',
+        backgroundColor: config.colors.primary,
         padding: 6,
         paddingHorizontal: 12,
         borderRadius: 4,
@@ -142,7 +145,7 @@ const styles = StyleSheet.create({
     },
     name: {
         flex: 1,
-        color: '#b52b85',
+        color: config.colors.primary,
         fontWeight: '500',
         fontSize: 14,
     },
@@ -160,7 +163,7 @@ const styles = StyleSheet.create({
         top: 35,
         backgroundColor: 'white',
         borderWidth: 1,
-        borderColor: '#b52b85',
+        borderColor: config.colors.primary,
         borderRadius: 4,
         zIndex: 10,
         elevation: 5,
@@ -172,7 +175,7 @@ const styles = StyleSheet.create({
         borderBottomColor: '#eee',
     },
     menuText: {
-        color: '#b52b85',
+        color: config.colors.primary,
         fontSize: 13,
     },
     modalOverlay: {
@@ -191,12 +194,12 @@ const styles = StyleSheet.create({
     modalTitle: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: '#b52b85',
+        color: config.colors.primary,
         marginBottom: 15,
     },
     input: {
         borderWidth: 1,
-        borderColor: '#b52b85',
+        borderColor: config.colors.primary,
         padding: 10,
         borderRadius: 4,
         marginBottom: 20,
@@ -210,12 +213,12 @@ const styles = StyleSheet.create({
         marginRight: 10,
     },
     modalBtnSave: {
-        backgroundColor: '#b52b85',
+        backgroundColor: config.colors.primary,
         padding: 10,
         borderRadius: 4,
     },
     btnText: {
-        color: '#b52b85',
+        color: config.colors.primary,
         fontWeight: 'bold',
     },
     // Fix text color for Save button

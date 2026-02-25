@@ -1,9 +1,15 @@
+:root {
+    --primary: #b52b85;
+    --primary-hover: #fdf2f8;
+    --bg-image: url('flowers.jpg');
+}
+
 body {
     margin: 0 auto;
     padding: 10px;
     font-family: "Inter", "Segoe UI", "Roboto", sans-serif;
     max-width: 302px;
-    background-image: url(flowers.jpg);
+    background-image: var(--bg-image);
     background-size: cover;
 }
 
@@ -18,19 +24,19 @@ body {
     display: flex;
     flex-direction: column;
     gap: 2px;
-    color: #b52b85;
+    color: var(--primary);
     font-weight: 700;
     font-size: 12px;
 }
 
 .user-label {
     font-size: 11px;
-    color: #b52b85;
+    color: var(--primary);
 }
 
 .auth-link {
     margin-left: auto;
-    color: #b52b85;
+    color: var(--primary);
     text-decoration: none;
     font-weight: 700;
     font-size: 12px;
@@ -47,7 +53,7 @@ body {
 }
 
 label {
-    color: #b52b85;
+    color: var(--primary);
     font-weight: 900;
 }
 
@@ -55,20 +61,20 @@ input {
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
-    border: 1px solid #b52b85;
+    border: 1px solid var(--primary);
     margin-bottom: 4px;
 }
 
 button {
-    background: #b52b85;
+    background: var(--primary);
     color: white;
     padding: 10px 20px;
-    border: 1px solid #b52b85;
+    border: 1px solid var(--primary);
     font-weight: bold;
 }
 
 .card {
-    border: 1px solid #b52b85;
+    border: 1px solid var(--primary);
     border-radius: 6px;
     padding: 12px;
 }
@@ -83,11 +89,11 @@ button {
     flex: 1;
     padding: 10px 12px !important;
     background: transparent;
-    color: #b52b85;
+    color: var(--primary);
 }
 
 .tab.active {
-    background: #b52b85;
+    background: var(--primary);
     color: white;
 }
 
@@ -95,7 +101,7 @@ button {
     margin-top: 10px;
     min-height: 20px;
     font-size: 13px;
-    color: #b52b85;
+    color: var(--primary);
     word-break: break-word;
 }
 
@@ -120,25 +126,25 @@ li.song-item {
     align-items: center;
     gap: 8px;
     padding: 10px;
-    border: 1px solid #b52b85;
+    border: 1px solid var(--primary);
     border-radius: 4px;
 }
 
 li.song-item:hover {
-    background: #fdf2f8;
+    background: var(--primary-hover);
 }
 
 .delete-btn {
     margin-left: auto;
     padding: 8px !important;
     background: transparent;
-    color: #b52b85;
-    border: 1px solid #b52b85;
+    color: var(--primary);
+    border: 1px solid var(--primary);
     cursor: pointer;
 }
 
 .delete-btn:hover {
-    background: #fdf2f8;
+    background: var(--primary-hover);
 }
 
 .delete-btn svg {
@@ -156,7 +162,7 @@ li.song-item:hover {
     cursor: pointer;
     font-size: 16px;
     padding: 4px;
-    color: #b52b85;
+    color: var(--primary);
 }
 
 .settings-btn:hover {
@@ -168,7 +174,7 @@ li.song-item:hover {
     right: 0;
     top: 100%;
     background: white;
-    border: 1px solid #b52b85;
+    border: 1px solid var(--primary);
     border-radius: 4px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     z-index: 10;
@@ -185,7 +191,7 @@ li.song-item:hover {
     padding: 8px 12px;
     cursor: pointer;
     font-size: 13px;
-    color: #b52b85;
+    color: var(--primary);
     background: none;
     border: none;
     text-align: left;
@@ -193,7 +199,7 @@ li.song-item:hover {
 }
 
 .menu-item:hover {
-    background: #fdf2f8;
+    background: var(--primary-hover);
 }
 
 .menu-item:not(:last-child) {
@@ -204,7 +210,7 @@ li.song-item:hover {
     flex: 1;
     font-size: 14px;
     font-weight: 500;
-    color: #b52b85;
+    color: var(--primary);
     cursor: pointer;
 }
 
@@ -261,7 +267,7 @@ li.song-item:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #fdf2f8;
-    color: #b52b85;
+    background: var(--primary-hover);
+    color: var(--primary);
     font-size: 20px;
 }

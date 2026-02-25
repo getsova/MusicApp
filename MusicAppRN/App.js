@@ -8,6 +8,9 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import AuthScreen from './src/screens/AuthScreen';
 import HomeScreen from './src/screens/HomeScreen';
+import { getBrandConfig } from './brandConfig';
+
+const config = getBrandConfig();
 
 // Initialize Firebase
 initializeApp(firebaseConfig);
@@ -28,7 +31,7 @@ export default function App() {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#b52b85" />
+        <ActivityIndicator size="large" color={config.colors.primary} />
       </View>
     );
   }

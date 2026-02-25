@@ -4,6 +4,9 @@ import { getAuth, signOut } from 'firebase/auth';
 import { getDatabase, ref, onValue, push } from 'firebase/database';
 import SongItem from '../components/SongItem';
 import YouTubePlayer from '../components/YouTubePlayer';
+import { getBrandConfig } from '../../brandConfig';
+
+const config = getBrandConfig();
 
 export default function HomeScreen() {
     const [url, setUrl] = useState('');
@@ -112,7 +115,7 @@ export default function HomeScreen() {
             </View>
 
             {loading ? (
-                <ActivityIndicator size="large" color="#b52b85" style={{ marginTop: 20 }} />
+                <ActivityIndicator size="large" color={config.colors.primary} style={{ marginTop: 20 }} />
             ) : (
                 <FlatList
                     data={songs}
@@ -153,12 +156,12 @@ const styles = StyleSheet.create({
     },
     userLabel: {
         fontSize: 12,
-        color: '#b52b85',
+        color: config.colors.primary,
     },
     userEmail: {
         fontSize: 14,
         fontWeight: 'bold',
-        color: '#b52b85',
+        color: config.colors.primary,
     },
     logoutBtn: {
         padding: 8,
@@ -183,20 +186,20 @@ const styles = StyleSheet.create({
         borderColor: '#eee',
     },
     label: {
-        color: '#b52b85',
+        color: config.colors.primary,
         fontWeight: '900',
         marginBottom: 5,
         fontSize: 14,
     },
     input: {
         borderWidth: 1,
-        borderColor: '#b52b85',
+        borderColor: config.colors.primary,
         padding: 10,
         borderRadius: 4,
         marginBottom: 10,
     },
     addBtn: {
-        backgroundColor: '#b52b85',
+        backgroundColor: config.colors.primary,
         padding: 12,
         alignItems: 'center',
         borderRadius: 4,
