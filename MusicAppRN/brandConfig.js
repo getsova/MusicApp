@@ -1,4 +1,4 @@
-export const ACTIVE_BRAND = "Iva"; // Change this to switch brands
+export const ACTIVE_BRAND = "Bungy"; // Change this to switch brands
 
 export const BRANDS = {
     Iva: {
